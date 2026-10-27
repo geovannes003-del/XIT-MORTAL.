@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0d">
+<title>XIT MORTAL | Free Fire</title>
+<style>
+:root{--bg:#09090c;--card:#141419;--red:#ff2638;--muted:#a8a8b3;--line:#292932}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#241016 0,#09090c 42%);color:#f7f7fb;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:28px 18px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.logo{font-size:clamp(28px,7vw,42px);font-weight:950;letter-spacing:2px;text-shadow:0 0 22px #ff263866}
+.logo span{color:var(--red)}
+header p{margin:7px 0 0;color:var(--muted);font-size:14px}
+.wrap{max-width:760px;margin:auto;padding:18px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.tab{border:1px solid var(--line);background:#111116;color:#eee;padding:12px 5px;border-radius:12px;font-weight:750;cursor:pointer}
+.tab.active{background:var(--red);border-color:var(--red);color:#fff}
+.panel{display:none;background:linear-gradient(145deg,#17171e,#101014);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.panel.active{display:block}
+h2{margin:0 0 6px;font-size:21px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 18px}
+.row{padding:13px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.label{display:flex;justify-content:space-between;gap:12px;font-weight:650;font-size:14px}
+output{color:var(--red);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--red);margin-top:12px}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.toggle:last-child{border:0}
+.switch{width:44px;height:25px;appearance:none;background:#3a3a44;border-radius:20px;position:relative;cursor:pointer;flex-shrink:0}
+.switch:before{content:"";position:absolute;width:19px;height:19px;top:3px;left:3px;background:white;border-radius:50%;transition:.18s}
+.switch:checked{background:var(--red)}
+.switch:checked:before{transform:translateX(19px)}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.product{border:1px solid var(--line);border-radius:14px;padding:15px;background:#101015}
+.icon{font-size:25px}
+.product h3{font-size:15px;margin:8px 0 4px}
+.product p{font-size:12px;color:var(--muted);margin:0 0 13px}
+button.action{background:var(--red);color:#fff;border:0;padding:10px 12px;border-radius:9px;font-weight:750;cursor:pointer;width:100%}
+.note{font-size:12px;line-height:1.5;color:var(--muted);padding:12px 14px;border:1px solid var(--line);border-radius:12px}
+footer{text-align:center;color:#777783;font-size:12px;padding:12px 0 28px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">XIT <span>MORTAL</span></div>
+  <p>FREE FIRE • PAINEL DE PERSONALIZAÇÃO</p>
+</header>
+<main class="wrap">
+  <nav class="tabs" aria-label="Seções do painel">
+    <button class="tab active" data-tab="sensi">🎯 Sensi</button>
+    <button class="tab" data-tab="painel">⚙️ Painel</button>
+    <button class="tab" data-tab="store">🛒 Store</button>
+  </nav>
+
+  <section id="sensi" class="panel active">
+    <h2>Configuração de sensibilidade</h2>
+    <p class="sub">Ajuste os valores de referência e teste no treino. Eles não alteram o jogo automaticamente.</p>
+    <div class="note" style="margin-bottom:14px;border-color:#ff2638">
+      <strong style="color:#ff2638">🎯 95% CAPA</strong><br>
+      Perfil de teste com sugestões de sensibilidade. O nome não representa uma taxa garantida de tiros na cabeça; ajuste manualmente e teste no modo treino.
+      <div style="margin-top:10px"><button class="action" id="capaProfile">Aplicar perfil de teste 95% Capa</button></div>
+    </div>
+    <div class="row"><div class="label"><label for="geral">Geral</label><output id="geralOut">90</output></div><input id="geral" type="range" min="0" max="200" value="90"></div>
+    <div class="row"><div class="label"><label for="red">Ponto vermelho</label><output id="redOut">85</output></div><input id="red" type="range" min="0" max="200" value="85"></div>
+    <div class="row"><div class="label"><label for="scope2">Mira 2x</label><output id="scope2Out">80</output></div><input id="scope2" type="range" min="0" max="200" value="80"></div>
+    <div class="row"><div class="label"><label for="scope4">Mira 4x</label><output id="scope4Out">75</output></div><input id="scope4" type="range" min="0" max="200" value="75"></div>
+    <div class="row"><div class="label"><label for="awp">Mira AWM</label><output id="awpOut">50</output></div><input id="awp" type="range" min="0" max="200" value="50"></div>
+    <div class="row"><div class="label"><label for="free">Olhadinha</label><output id="freeOut">70</output></div><input id="free" type="range" min="0" max="200" value="70"></div>
+    <button class="action" id="save">Salvar configuração neste aparelho</button>
+  </section>
+
+  <section id="painel" class="panel">
+    <h2>Personalização</h2>
+    <p class="sub">Preferências visuais desta página; não modifica arquivos nem processos do Free Fire.</p>
+    <label class="toggle"><span>Reduzir efeitos visuais</span><input class="switch" id="reduce" type="checkbox"></label>
+    <label class="toggle"><span>Mostrar aviso de boas práticas</span><input class="switch" id="tips" type="checkbox" checked></label>
+    <label class="toggle"><span>Mostrar dica de mira</span><input class="switch" id="aimTip" type="checkbox" checked></label>
+    <div class="note" id="aimTipText">Dica de mira: experimente arrastar o botão de tiro com movimentos curtos e consistentes; personalize o HUD nas configurações do jogo.</div>
+    <div class="note" id="tip">Dica: teste a sensibilidade no modo treino e mude um valor por vez para comparar os resultados.</div>
+  </section>
+
+  <section id="store" class="panel">
+    <h2>XIT MORTAL Store</h2>
+    <p class="sub">Modelo de catálogo. Adicione apenas produtos próprios ou que você tenha autorização para vender.</p>
+    <div class="product" style="margin-bottom:14px">
+      <h3>➕ Cadastrar produto</h3>
+      <div class="row"><label for="productName">Nome do produto</label><input id="productName" maxlength="60" placeholder="Ex.: Pack de HUD" style="width:100%;margin-top:8px;padding:11px;border-radius:9px;border:1px solid var(--line);background:#09090c;color:#fff"></div>
+      <div class="row"><label for="productDesc">Descrição</label><input id="productDesc" maxlength="140" placeholder="Descreva o produto ou serviço" style="width:100%;margin-top:8px;padding:11px;border-radius:9px;border:1px solid var(--line);background:#09090c;color:#fff"></div>
+      <div class="row"><label for="productPrice">Preço (R$)</label><input id="productPrice" type="number" min="0" step="0.01" placeholder="0,00" style="width:100%;margin-top:8px;padding:11px;border-radius:9px;border:1px solid var(--line);background:#09090c;color:#fff"></div>
+      <button class="action" id="addProduct">Adicionar ao catálogo</button>
+      <button class="action" id="exportProducts" style="margin-top:8px;background:#292932">Exportar catálogo (CSV)</button>
+    </div>
+    <div class="products" id="productList">
+      <article class="product"><div class="icon">🎯</div><h3>Pack de configurações</h3><p>Espaço para descrever seu produto.</p><button class="action" data-product="Pack de configurações">Consultar</button></article>
+      <article class="product"><div class="icon">🎨</div><h3>Personalização HUD</h3><p>Espaço para descrever seu serviço.</p><button class="action" data-product="Personalização HUD">Consultar</button></article>
+      <article class="product"><div class="icon">🧩</div><h3>Design gamer</h3><p>Espaço para descrever seu produto.</p><button class="action" data-product="Design gamer">Consultar</button></article>
+    </div>
+    <p class="note" style="margin-top:14px">Esta é uma demonstração: não processa pagamentos nem publica vendas. Os botões mostram apenas uma mensagem de exemplo.</p>
+  </section>
+  <footer>XIT MORTAL • Protótipo inicial • Não afiliado à Garena</footer>
+</main>
+<script>
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));
+}));
+document.querySelectorAll('input[type="range"]').forEach(input=>{
+  const out=document.getElementById(input.id+'Out');
+  const update=()=>out.textContent=input.value;
+  input.addEventListener('input',update); update();
+});
+document.getElementById('save').addEventListener('click',()=>{
+  const values={};document.querySelectorAll('input[type="range"]').forEach(i=>values[i.id]=i.value);
+  try{localStorage.setItem('xitMortalSensi',JSON.stringify(values));alert('Configurações salvas neste navegador!');}
+  catch(e){alert('Não foi possível salvar neste navegador.');}
+});
+document.querySelectorAll('[data-product]').forEach(b=>b.addEventListener('click',()=>alert('Produto de exemplo: '+b.dataset.product+'. Configure aqui seu contato e preço antes de publicar.')));
+const productList=document.getElementById('productList');
+function renderProducts(){
+  let products=[];
+  try{products=JSON.parse(localStorage.getItem('xitMortalProducts')||'[]')}catch(e){}
+  productList.querySelectorAll('.custom-product').forEach(el=>el.remove());
+  products.forEach((p,index)=>{
+    const card=document.createElement('article');card.className='product custom-product';
+    const icon=document.createElement('div');icon.className='icon';icon.textContent='🛍️';
+    const title=document.createElement('h3');title.textContent=p.name;
+    const desc=document.createElement('p');desc.textContent=p.desc||'Sem descrição';
+    const price=document.createElement('p');price.style.color='var(--red)';price.style.fontWeight='800';price.textContent='R$ '+Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    const del=document.createElement('button');del.className='action';del.textContent='Excluir';del.addEventListener('click',()=>{products.splice(index,1);localStorage.setItem('xitMortalProducts',JSON.stringify(products));renderProducts();});
+    card.append(icon,title,desc,price,del);productList.appendChild(card);
+  });
+}
+document.getElementById('addProduct').addEventListener('click',()=>{
+  const name=document.getElementById('productName').value.trim();
+  const desc=document.getElementById('productDesc').value.trim();
+  const price=document.getElementById('productPrice').value;
+  if(!name||price===''||!Number.isFinite(Number(price))||Number(price)<0){alert('Informe o nome e um preço válido.');return;}
+  let products=[];try{products=JSON.parse(localStorage.getItem('xitMortalProducts')||'[]')}catch(e){}
+  products.push({name,desc,price:Number(price)});
+  try{localStorage.setItem('xitMortalProducts',JSON.stringify(products));}
+  catch(e){alert('Não foi possível salvar os produtos neste navegador.');return;}
+  document.getElementById('productName').value='';document.getElementById('productDesc').value='';document.getElementById('productPrice').value='';
+  renderProducts();alert('Produto adicionado ao catálogo deste navegador.');
+});
+renderProducts();
+document.getElementById('exportProducts').addEventListener('click',()=>{
+  let products=[];try{products=JSON.parse(localStorage.getItem('xitMortalProducts')||'[]')}catch(e){}
+  if(!products.length){alert('Cadastre pelo menos um produto antes de exportar.');return;}
+  const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const rows=[['Nome','Descrição','Preço (R$)'],...products.map(p=>[p.name,p.desc,Number(p.price).toFixed(2).replace('.',',')])];
+  const csv='\\uFEFF'+rows.map(row=>row.map(quote).join(';')).join('\\r\\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='catalogo-xit-mortal.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+});
+document.getElementById('reduce').addEventListener('change',e=>document.body.style.background=e.target.checked?'#09090c':'');
+document.getElementById('tips').addEventListener('change',e=>document.getElementById('tip').hidden=!e.target.checked);
+document.getElementById('aimTip').addEventListener('change',e=>document.getElementById('aimTipText').hidden=!e.target.checked);
+document.getElementById('capaProfile').addEventListener('click',()=>{
+  const preset={geral:95,red:90,scope2:85,scope4:75,awp:50,free:80};
+  Object.entries(preset).forEach(([id,val])=>{const el=document.getElementById(id);el.value=val;el.dispatchEvent(new Event('input'));});
+  alert('Perfil de teste 95% Capa aplicado. Os valores são sugestões e não garantem acertos; toque em “Salvar configuração neste aparelho” para guardar.');
+});
+try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.entries(saved).forEach(([id,val])=>{const el=document.getElementById(id);if(el){el.value=val;el.dispatchEvent(new Event('input'));}});}catch(e){}
+</script>
+</body>
+</html>
