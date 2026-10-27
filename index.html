@@ -228,3 +228,21 @@ function comprar(plano, preco) {
     "&body=" + mensagem;
 }
 </script>
+<p id="aviso" style="color:#00ff66;"></p>
+</section>
+
+<section style="background:#101010;color:white;padding:20px;text-align:center;">
+  <h2 style="color:#00ff66;">💚 PAGAMENTO VIA PIX</h2>
+  <p>Faça o pagamento do seu plano usando a chave Pix abaixo:</p>
+
+  <p id="chavePix" style="background:#222;padding:12px;border-radius:8px;overflow-wrap:anywhere;">
+    SUA_CHAVE_PIX_AQUI
+  </p>
+
+  <button onclick="navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(()=>alert('Chave Pix copiada!')).catch(()=>alert('Não foi possível copiar. Selecione e copie a chave.'))"
+    style="background:#00ff66;color:black;padding:12px 20px;border:0;border-radius:8px;font-weight:bold;">
+    61876702303
+  </button>
+
+  <p style="color:#ccc;">Após pagar, envie o comprovante para confirmar seu acesso.</p>
+</section>
