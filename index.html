@@ -291,6 +291,123 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- NO RECOIL VISUAL - XIT MORTAL -->
+<style>
+  #xit-norecoil {
+    background: #08111f;
+    color: #65eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-norecoil .nr-demo {
+    height: 140px;
+    margin: 16px 0;
+    background: #050b13;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #xit-norecoil .nr-cross {
+    width: 32px;
+    height: 32px;
+    position: relative;
+  }
+
+  #xit-norecoil .nr-cross::before,
+  #xit-norecoil .nr-cross::after {
+    content: "";
+    position: absolute;
+    background: #5dffad;
+    border-radius: 2px;
+  }
+
+  #xit-norecoil .nr-cross::before {
+    width: 3px;
+    height: 32px;
+    left: 14px;
+  }
+
+  #xit-norecoil .nr-cross::after {
+    height: 3px;
+    width: 32px;
+    top: 14px;
+  }
+
+  #xit-norecoil .nr-status {
+    background: #10253a;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+
+  #xit-norecoil button {
+    background: #00cce8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: bold;
+  }
+</style>
+
+<section id="xit-norecoil">
+  <h3>🎯 NO RECOIL</h3>
+  <p>Estabilizador visual demonstrativo</p>
+
+  <div class="nr-demo">
+    <div class="nr-cross"></div>
+  </div>
+
+  <div id="xit-nr-status" class="nr-status" role="status">
+    ESTADO: DESATIVADO
+  </div>
+
+  <button id="xit-nr-toggle" type="button"
+          aria-pressed="false">
+    ATIVAR VISUALIZAÇÃO
+  </button>
+
+  <p style="font-size:12px;color:#a9c5d5">
+    Interface visual; não controla o recuo real do jogo.
+  </p>
+</section>
+
+<script>
+(function () {
+  const painel = document.getElementById("xit-norecoil");
+  if (!painel || painel.dataset.iniciado) return;
+  painel.dataset.iniciado = "sim";
+
+  const status = document.getElementById("xit-nr-status");
+  const botao = document.getElementById("xit-nr-toggle");
+  let ativo = false;
+
+  botao.addEventListener("click", function () {
+    ativo = !ativo;
+
+    status.textContent = ativo
+      ? "ESTADO: VISUALIZAÇÃO ATIVA"
+      : "ESTADO: DESATIVADO";
+
+    botao.textContent = ativo
+      ? "DESATIVAR VISUALIZAÇÃO"
+      : "ATIVAR VISUALIZAÇÃO";
+
+    botao.setAttribute("aria-pressed", String(ativo));
+  });
+})();
+</script>
+<!-- FIM NO RECOIL -->
+
 <!-- HEADSHOT TRAINING - XIT MORTAL -->
 <style>
   #xit-headshot {
