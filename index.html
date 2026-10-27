@@ -291,6 +291,107 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- SPEED VISUAL - XIT MORTAL -->
+<style>
+  #xit-speed {
+    background: #08111f;
+    color: #65eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-speed .speed-meter {
+    background: #10253a;
+    border-radius: 10px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+
+  #xit-speed .speed-number {
+    font-size: 34px;
+    font-weight: bold;
+  }
+
+  #xit-speed input {
+    width: 100%;
+    margin: 14px 0;
+  }
+
+  #xit-speed button {
+    background: #00cce8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: bold;
+  }
+</style>
+
+<section id="xit-speed">
+  <h3>⚡ SPEED</h3>
+  <p>Indicador de velocidade demonstrativo</p>
+
+  <div class="speed-meter">
+    <div id="xit-speed-number" class="speed-number">1.0x</div>
+    <div>Multiplicador visual</div>
+  </div>
+
+  <label for="xit-speed-range">Ajuste da demonstração</label>
+  <input id="xit-speed-range" type="range"
+         min="1" max="5" step="0.5" value="1">
+
+  <p id="xit-speed-status" role="status">
+    ESTADO: DESATIVADO
+  </p>
+
+  <button id="xit-speed-toggle" type="button"
+          aria-pressed="false">
+    ATIVAR VISUALIZAÇÃO
+  </button>
+
+  <p style="font-size:12px;color:#a9c5d5">
+    Não altera a velocidade real do jogo.
+  </p>
+</section>
+
+<script>
+(function () {
+  const painel = document.getElementById("xit-speed");
+  if (!painel || painel.dataset.iniciado) return;
+  painel.dataset.iniciado = "sim";
+
+  const range = document.getElementById("xit-speed-range");
+  const numero = document.getElementById("xit-speed-number");
+  const status = document.getElementById("xit-speed-status");
+  const botao = document.getElementById("xit-speed-toggle");
+  let ativo = false;
+
+  range.addEventListener("input", function () {
+    numero.textContent = Number(range.value).toFixed(1) + "x";
+  });
+
+  botao.addEventListener("click", function () {
+    ativo = !ativo;
+
+    status.textContent = ativo
+      ? "ESTADO: VISUALIZAÇÃO ATIVA"
+      : "ESTADO: DESATIVADO";
+
+    botao.textContent = ativo
+      ? "DESATIVAR VISUALIZAÇÃO"
+      : "ATIVAR VISUALIZAÇÃO";
+
+    botao.setAttribute("aria-pressed", String(ativo));
+  });
+})();
+</script>
+<!-- FIM SPEED -->
+
 <!-- NO RECOIL VISUAL - XIT MORTAL -->
 <style>
   #xit-norecoil {
