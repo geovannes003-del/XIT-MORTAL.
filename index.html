@@ -291,6 +291,110 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- AIM FOV VISUAL - XIT MORTAL -->
+<style>
+  #xit-fov {
+    background: #08111f;
+    color: #65eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-fov .fov-area {
+    height: 190px;
+    display: grid;
+    place-items: center;
+    margin: 12px 0;
+    background:
+      linear-gradient(#153247 1px, transparent 1px),
+      linear-gradient(90deg, #153247 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: 10px;
+  }
+
+  #xit-fov .fov-circle {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #00eaff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00eaff66;
+    transition: width .2s, height .2s, opacity .2s;
+  }
+
+  #xit-fov button {
+    background: #00cce8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-weight: bold;
+  }
+
+  #xit-fov input { width: 100%; }
+
+  #xit-fov .off { opacity: .15; }
+</style>
+
+<section id="xit-fov">
+  <h3>🎯 AIM FOV</h3>
+  <p>Campo de visão — demonstração visual</p>
+
+  <div class="fov-area">
+    <div id="xit-fov-circle" class="fov-circle"></div>
+  </div>
+
+  <label for="xit-fov-size">Tamanho do círculo</label>
+  <input id="xit-fov-size" type="range"
+         min="40" max="160" value="100">
+
+  <p>Diâmetro: <span id="xit-fov-value">100</span> px</p>
+
+  <button id="xit-fov-toggle" type="button"
+          aria-pressed="true">
+    DESATIVAR VISUALIZAÇÃO
+  </button>
+
+  <p style="font-size:12px;color:#a9c5d5">
+    Visualização independente; não altera a mira do jogo.
+  </p>
+</section>
+
+<script>
+(function () {
+  const circle = document.getElementById("xit-fov-circle");
+  const slider = document.getElementById("xit-fov-size");
+  const value = document.getElementById("xit-fov-value");
+  const button = document.getElementById("xit-fov-toggle");
+
+  if (!circle || !slider || !value || !button) return;
+
+  function updateSize() {
+    const size = Number(slider.value);
+    circle.style.width = size + "px";
+    circle.style.height = size + "px";
+    value.textContent = size;
+  }
+
+  slider.addEventListener("input", updateSize);
+
+  button.addEventListener("click", function () {
+    const hidden = circle.classList.toggle("off");
+    button.textContent = hidden
+      ? "ATIVAR VISUALIZAÇÃO"
+      : "DESATIVAR VISUALIZAÇÃO";
+    button.setAttribute("aria-pressed", String(!hidden));
+  });
+
+  updateSize();
+})();
+</script>
+<!-- FIM AIM FOV -->
+
 <!-- AINBOT XIT MORTAL -->
 <style>
   #xit-ainbot {
