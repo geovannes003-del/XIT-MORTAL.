@@ -291,6 +291,99 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- MENU MINHAS FUNCOES - XIT MORTAL -->
+<style>
+  #xit-minhas-funcoes {
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 16px;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    background: #08111f;
+    color: #65eaff;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-funcoes-toggle {
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    border-radius: 9px;
+    background: #00cce8;
+    color: #04111b;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #xit-funcoes-lista {
+    display: grid;
+    gap: 9px;
+    margin-top: 14px;
+  }
+
+  #xit-funcoes-lista[hidden] {
+    display: none;
+  }
+
+  #xit-funcoes-lista a {
+    display: block;
+    padding: 12px;
+    border: 1px solid #167b99;
+    border-radius: 8px;
+    color: #65eaff;
+    background: #10253a;
+    text-decoration: none;
+  }
+
+  #xit-funcoes-lista a:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+</style>
+
+<section id="xit-minhas-funcoes">
+  <button
+    id="xit-funcoes-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="xit-funcoes-lista">
+    ☰ MINHAS FUNÇÕES ＋
+  </button>
+
+  <nav id="xit-funcoes-lista" hidden>
+    <a href="#xit-antena">📡 ANTENA</a>
+    <a href="#xit-ainbot">🤖 AINBOT</a>
+    <a href="#xit-fov">🎯 AIM FOV</a>
+    <a href="#xit-esp">👁️ ESP PLAYER</a>
+    <a href="#xit-headshot">🎯 HEADSHOT</a>
+    <a href="#xit-norecoil">⚙️ NO RECOIL</a>
+    <a href="#xit-speed">⚡ SPEED</a>
+  </nav>
+</section>
+
+<script>
+(function () {
+  const botao = document.getElementById("xit-funcoes-toggle");
+  const lista = document.getElementById("xit-funcoes-lista");
+
+  if (!botao || !lista || botao.dataset.iniciado) return;
+  botao.dataset.iniciado = "sim";
+
+  botao.addEventListener("click", function () {
+    const aberto = botao.getAttribute("aria-expanded") !== "true";
+
+    botao.setAttribute("aria-expanded", String(aberto));
+    lista.hidden = !aberto;
+
+    botao.textContent = aberto
+      ? "☰ MINHAS FUNÇÕES −"
+      : "☰ MINHAS FUNÇÕES ＋";
+  });
+})();
+</script>
+<!-- FIM MENU MINHAS FUNCOES -->
+
 <!-- SPEED VISUAL - XIT MORTAL -->
 <style>
   #xit-speed {
