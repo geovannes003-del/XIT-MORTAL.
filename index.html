@@ -291,6 +291,121 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- HEADSHOT TRAINING - XIT MORTAL -->
+<style>
+  #xit-headshot {
+    background: #08111f;
+    color: #65eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-headshot .hs-target {
+    width: 100px;
+    height: 130px;
+    border: 2px solid #00cce8;
+    border-radius: 45% 45% 12px 12px;
+    margin: 20px auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  #xit-headshot .hs-head {
+    position: absolute;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #5dffad;
+    border-radius: 50%;
+  }
+
+  #xit-headshot .hs-body {
+    position: absolute;
+    top: 50px;
+    width: 58px;
+    height: 65px;
+    border: 2px solid #00cce8;
+    border-radius: 12px 12px 4px 4px;
+  }
+
+  #xit-headshot button {
+    background: #00cce8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: bold;
+  }
+
+  #xit-headshot .hs-status {
+    background: #10253a;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+</style>
+
+<section id="xit-headshot">
+  <h3>🎯 HEADSHOT TRAINING</h3>
+  <p>Treino visual de precisão</p>
+
+  <div class="hs-target" aria-label="Alvo ilustrativo">
+    <div class="hs-head"></div>
+    <div class="hs-body"></div>
+  </div>
+
+  <div id="xit-hs-status" class="hs-status" role="status">
+    TREINO: PRONTO
+  </div>
+
+  <button id="xit-hs-button" type="button">
+    INICIAR TREINO
+  </button>
+
+  <p style="font-size:12px;color:#a9c5d5">
+    Simulação local; não mede nem modifica disparos reais.
+  </p>
+</section>
+
+<script>
+(function () {
+  const painel = document.getElementById("xit-headshot");
+  if (!painel || painel.dataset.iniciado) return;
+  painel.dataset.iniciado = "sim";
+
+  const status = document.getElementById("xit-hs-status");
+  const botao = document.getElementById("xit-hs-button");
+  let ativo = false;
+  let tentativas = 0;
+
+  botao.addEventListener("click", function () {
+    ativo = !ativo;
+
+    if (ativo) {
+      tentativas = 0;
+      status.textContent = "TREINO INICIADO — TOQUE NO ALVO ILUSTRATIVO";
+      botao.textContent = "ENCERRAR TREINO";
+    } else {
+      status.textContent = "TREINO ENCERRADO — TOQUES: " + tentativas;
+      botao.textContent = "INICIAR TREINO";
+    }
+  });
+
+  painel.querySelector(".hs-target").addEventListener("click", function () {
+    if (!ativo) return;
+    tentativas++;
+    status.textContent = "TOQUES NO ALVO: " + tentativas;
+  });
+})();
+</script>
+<!-- FIM HEADSHOT TRAINING -->
+
 <!-- ESP PLAYER VISUAL - XIT MORTAL -->
 <style>
   #xit-esp {
