@@ -291,6 +291,118 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- ANTENA VISUAL XIT MORTAL -->
+<style>
+  #xit-antena {
+    background: #07111f;
+    color: #55eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 18px #00cfff22;
+  }
+
+  #xit-antena .radar {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #16a5c7;
+    border-radius: 50%;
+    margin: 18px auto;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle, transparent 28%, #167b9933 29%, transparent 31%),
+      radial-gradient(circle, transparent 58%, #167b9933 59%, transparent 61%);
+  }
+
+  #xit-antena .radar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+      from 0deg,
+      transparent 65%,
+      #00eaff66 100%
+    );
+    animation: xit-varrer 3s linear infinite;
+    border-radius: 50%;
+  }
+
+  #xit-antena .radar::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #5dffad;
+    border-radius: 50%;
+    left: 68%;
+    top: 32%;
+    box-shadow: 0 0 12px #5dffad;
+  }
+
+  #xit-antena .radar.off::before,
+  #xit-antena .radar.off::after {
+    animation: none;
+    opacity: 0.2;
+  }
+
+  #xit-antena button {
+    background: #00bfd8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  @keyframes xit-varrer {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<section id="xit-antena">
+  <h3>📡 ANTENA XIT MORTAL</h3>
+  <div id="xit-radar" class="radar"></div>
+  <p id="xit-status">ANTENA VISUAL: ATIVA</p>
+  <p>Sinal demonstrativo: <span id="xit-sinal">100%</span></p>
+  <button id="xit-toggle" type="button">DESLIGAR ANTENA</button>
+  <p style="font-size:12px;color:#9bb9c7">
+    Simulação visual — não detecta jogadores reais.
+  </p>
+</section>
+
+<script>
+(function () {
+  const radar = document.getElementById("xit-radar");
+  const status = document.getElementById("xit-status");
+  const sinal = document.getElementById("xit-sinal");
+  const botao = document.getElementById("xit-toggle");
+  if (!radar || !status || !sinal || !botao) return;
+
+  let ativa = true;
+
+  botao.addEventListener("click", function () {
+    ativa = !ativa;
+    radar.classList.toggle("off", !ativa);
+    status.textContent = ativa
+      ? "ANTENA VISUAL: ATIVA"
+      : "ANTENA VISUAL: DESATIVADA";
+    sinal.textContent = ativa ? "100% (simulado)" : "--";
+    botao.textContent = ativa
+      ? "DESLIGAR ANTENA"
+      : "LIGAR ANTENA";
+  });
+
+  sinal.textContent = "100% (simulado)";
+})();
+</script>
+<!-- FIM ANTENA VISUAL XIT MORTAL -->
+
 </html>
 
 <div style="text-align:center; margin:20px;">
