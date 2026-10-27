@@ -172,3 +172,59 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
     Fale conosco
   </a>
 </div>
+
+<section id="planos" style="background:#101010;color:#fff;padding:25px 15px;text-align:center;font-family:Arial,sans-serif;">
+  <h2 style="color:#00ff66;">🔥 PLANOS XIT MORTAL</h2>
+  <p>Escolha seu plano de acesso.</p>
+
+  <div style="background:#1b1b1b;border:1px solid #00ff66;border-radius:12px;padding:20px;margin:15px auto;max-width:320px;">
+    <h3>Plano Básico</h3>
+    <p>7 dias de acesso</p>
+    <h2 style="color:#00ff66;">R$ 9,90</h2>
+    <button onclick="comprar('Plano Básico','9,90')"
+      style="background:#00ff66;color:#000;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;">
+      QUERO COMPRAR
+    </button>
+  </div>
+
+  <div style="background:#1b1b1b;border:1px solid #00ff66;border-radius:12px;padding:20px;margin:15px auto;max-width:320px;">
+    <h3>Plano Mensal</h3>
+    <p>30 dias de acesso</p>
+    <h2 style="color:#00ff66;">R$ 19,90</h2>
+    <button onclick="comprar('Plano Mensal','19,90')"
+      style="background:#00ff66;color:#000;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;">
+      QUERO COMPRAR
+    </button>
+  </div>
+
+  <div style="background:#1b1b1b;border:1px solid #00ff66;border-radius:12px;padding:20px;margin:15px auto;max-width:320px;">
+    <h3>Plano Premium</h3>
+    <p>90 dias de acesso</p>
+    <h2 style="color:#00ff66;">R$ 39,90</h2>
+    <button onclick="comprar('Plano Premium','39,90')"
+      style="background:#00ff66;color:#000;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;">
+      QUERO COMPRAR
+    </button>
+  </div>
+
+  <p id="aviso" style="color:#00ff66;"></p>
+</section>
+
+<script>
+function comprar(plano, preco) {
+  const email = "vannisantos_01@hotmail.com";
+  const assunto = encodeURIComponent("Pedido de acesso - XIT MORTAL");
+  const mensagem = encodeURIComponent(
+    "Olá! Quero comprar o " + plano +
+    ", no valor de R$ " + preco +
+    ". Gostaria de receber as instruções para pagar por Pix."
+  );
+
+  document.getElementById("aviso").textContent =
+    "Abrindo seu e-mail para solicitar o pagamento...";
+
+  window.location.href =
+    "mailto:" + email + "?subject=" + assunto +
+    "&body=" + mensagem;
+}
+</script>
