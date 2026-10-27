@@ -291,6 +291,135 @@ try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.
 </script>
 <!-- FIM ANTENA XIT MORTAL -->
 </body>
+<!-- ESP PLAYER VISUAL - XIT MORTAL -->
+<style>
+  #xit-esp {
+    background: #08111f;
+    color: #65eaff;
+    border: 1px solid #167b99;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 16px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  #xit-esp .esp-screen {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background:
+      linear-gradient(#153247 1px, transparent 1px),
+      linear-gradient(90deg, #153247 1px, transparent 1px),
+      #050b13;
+    background-size: 20px 20px;
+  }
+
+  #xit-esp .esp-marker {
+    position: absolute;
+    width: 42px;
+    height: 68px;
+    border: 2px solid #5dffad;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #5dffad66;
+  }
+
+  #xit-esp .esp-marker.one {
+    top: 25px;
+    left: 25%;
+  }
+
+  #xit-esp .esp-marker.two {
+    top: 75px;
+    right: 22%;
+    border-color: #00cce8;
+    box-shadow: 0 0 8px #00cce866;
+  }
+
+  #xit-esp .esp-label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  #xit-esp button {
+    background: #00cce8;
+    color: #04111b;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-weight: bold;
+    margin-top: 12px;
+  }
+
+  #xit-esp .hidden {
+    display: none;
+  }
+</style>
+
+<section id="xit-esp">
+  <h3>👁️ ESP PLAYER</h3>
+  <p>Marcadores de demonstração</p>
+
+  <div class="esp-screen">
+    <div class="esp-marker one">
+      <span class="esp-label">ALVO DEMO 01</span>
+    </div>
+    <div class="esp-marker two">
+      <span class="esp-label">ALVO DEMO 02</span>
+    </div>
+  </div>
+
+  <p id="xit-esp-status" role="status">
+    ESTADO: ATIVO
+  </p>
+
+  <button id="xit-esp-toggle" type="button"
+          aria-pressed="true">
+    DESATIVAR VISUALIZAÇÃO
+  </button>
+
+  <p style="font-size:12px;color:#a9c5d5">
+    Marcadores fictícios. Não detecta jogadores reais.
+  </p>
+</section>
+
+<script>
+(function () {
+  const painel = document.getElementById("xit-esp");
+  if (!painel || painel.dataset.iniciado) return;
+  painel.dataset.iniciado = "sim";
+
+  const marcadores = painel.querySelectorAll(".esp-marker");
+  const status = document.getElementById("xit-esp-status");
+  const botao = document.getElementById("xit-esp-toggle");
+  let ativo = true;
+
+  botao.addEventListener("click", function () {
+    ativo = !ativo;
+
+    marcadores.forEach(function (marcador) {
+      marcador.classList.toggle("hidden", !ativo);
+    });
+
+    status.textContent = ativo
+      ? "ESTADO: ATIVO"
+      : "ESTADO: DESATIVADO";
+
+    botao.textContent = ativo
+      ? "DESATIVAR VISUALIZAÇÃO"
+      : "ATIVAR VISUALIZAÇÃO";
+
+    botao.setAttribute("aria-pressed", String(ativo));
+  });
+})();
+</script>
+<!-- FIM ESP PLAYER -->
+
 <!-- AIM FOV VISUAL - XIT MORTAL -->
 <style>
   #xit-fov {
