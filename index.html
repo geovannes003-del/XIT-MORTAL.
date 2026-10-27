@@ -164,6 +164,132 @@ document.getElementById('capaProfile').addEventListener('click',()=>{
 });
 try{const saved=JSON.parse(localStorage.getItem('xitMortalSensi')||'{}');Object.entries(saved).forEach(([id,val])=>{const el=document.getElementById(id);if(el){el.value=val;el.dispatchEvent(new Event('input'));}});}catch(e){}
 </script>
+
+<!-- ANTENA XIT MORTAL -->
+<style>
+  #xit-radar {
+    background: #050b08;
+    color: #00ff66;
+    border: 1px solid #00ff66;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 20px auto;
+    max-width: 360px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 15px #00ff6633;
+  }
+
+  #xit-radar h3 {
+    margin-top: 0;
+    letter-spacing: 2px;
+  }
+
+  .xit-circle {
+    width: 190px;
+    height: 190px;
+    border: 2px solid #00ff66;
+    border-radius: 50%;
+    margin: 18px auto;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, transparent 49%, #00ff6644 50%, transparent 51%),
+      linear-gradient(transparent 49%, #00ff6644 50%, transparent 51%),
+      radial-gradient(circle, transparent 30%, #00ff6622 31%, transparent 32%, transparent 60%, #00ff6644 61%, transparent 62%);
+  }
+
+  .xit-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      #00ff6655 45deg,
+      transparent 75deg
+    );
+    animation: xit-scan 3s linear infinite;
+  }
+
+  @keyframes xit-scan {
+    to { transform: rotate(360deg); }
+  }
+
+  .xit-antenna {
+    font-size: 38px;
+    animation: xit-pulse 1.5s infinite alternate;
+  }
+
+  @keyframes xit-pulse {
+    from { opacity: .5; }
+    to { opacity: 1; text-shadow: 0 0 14px #00ff66; }
+  }
+
+  #xit-status {
+    font-size: 13px;
+    color: #b7ffce;
+  }
+
+  #xit-location-btn {
+    background: #00ff66;
+    color: #001a08;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+
+<section id="xit-radar">
+  <div class="xit-antenna">📡</div>
+  <h3>XIT MORTAL RADAR</h3>
+  <div class="xit-circle">
+    <div class="xit-sweep"></div>
+  </div>
+  <p id="xit-status">RADAR VISUAL ATIVO</p>
+  <button id="xit-location-btn" type="button">
+    COMPARTILHAR MINHA LOCALIZAÇÃO
+  </button>
+  <p style="font-size:11px;color:#91a99a">
+    Sua localização só será consultada após sua autorização.
+    Este radar visual não detecta outros jogadores.
+  </p>
+</section>
+
+<script>
+(function () {
+  const btn = document.getElementById('xit-location-btn');
+  const status = document.getElementById('xit-status');
+
+  if (!btn || !status) return;
+
+  btn.addEventListener('click', function () {
+    if (!navigator.geolocation) {
+      status.textContent = 'Localização não disponível neste navegador.';
+      return;
+    }
+
+    status.textContent = 'Aguardando sua autorização...';
+
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        status.textContent =
+          'Localização autorizada. Precisão aproximada: ' +
+          Math.round(position.coords.accuracy) + ' metros.';
+        btn.textContent = 'LOCALIZAÇÃO AUTORIZADA';
+      },
+      function () {
+        status.textContent =
+          'Localização não autorizada ou indisponível.';
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
+})();
+</script>
+<!-- FIM ANTENA XIT MORTAL -->
 </body>
 </html>
 
